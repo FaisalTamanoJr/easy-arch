@@ -369,17 +369,14 @@ services=(reflector.timer snapper-timeline.timer snapper-cleanup.timer btrfs-scr
 for service in "${services[@]}"; do
     systemctl enable "$service" --root=/mnt &>/dev/null
 done
-
-# Finishing up.
-info_print "Done, you may now wish to reboot (further changes can be done by chrooting into /mnt)."
 exit
 
 # Install additional programs and configure the desktop
 arch-chroot /mnt /bin/bash -e <<EOF
 # Install an AUR Helper
+pacman -S --needed git base-devel
 su $username
 cd
-echo "$userpass y" |sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
