@@ -373,3 +373,33 @@ done
 # Finishing up.
 info_print "Done, you may now wish to reboot (further changes can be done by chrooting into /mnt)."
 exit
+
+# Install additional programs and configure the desktop
+arch-chroot /mnt /bin/bash -e <<EOF
+# Install an AUR Helper
+su $username
+cd
+echo "$userpass y" |sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+exit
+cd
+
+# Install essential programs
+echo "y" | pacman -S dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils
+
+# Install video/multimedia plugins
+echo "1 y" | pacman -S ffmpeg gst-plugins-good gst-plugins-bad gst-plugins-ugly gwenview spectacle ffmpegthumbs evince conky
+
+# Install sound packages
+echo "y" | pacman -S alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber
+
+# Start system services
+systemctl enable sddm
+systemctl enable bluetooth
+systemctl enable cups
+
+EOF
+
+reboot
