@@ -21,11 +21,7 @@ curl $wallpaper --output Pictures/wallpaper.jpg
 
 # Clone the awesome window manager config
 git clone https://github.com/FaisalTamanoJr/project-dotfiles.git .awesomeConfig
-if [ -d ".config/awesome" ]; then
-    rm -rf .config/awesome
-fi
-mkdir .config/awesome
-cp -a .awesomeConfig/.config/awesome .config/awesome
+cp -a .awesomeConfig/.config/awesome .config/
 
 
 # Start the enabled services
