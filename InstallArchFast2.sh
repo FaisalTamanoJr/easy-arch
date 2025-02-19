@@ -20,7 +20,7 @@ wallpaper="https://i.redd.it/frj4dudeg3b71.jpg"
 curl $wallpaper --output Pictures/wallpaper.jpg
 
 # Clone the awesome window manager config
-git clone https://github.com/FaisalTamanoJr/easy-arch.git .awesomeConfig
+git clone https://github.com/FaisalTamanoJr/project-dotfiles .awesomeConfig
 mkdir .config/awesome
 cp -a .awesomeConfig/.config/awesome .config/awesome
 
