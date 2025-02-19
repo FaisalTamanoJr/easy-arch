@@ -12,3 +12,20 @@ sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+cd
+
+# Download wallpaper
+mkdir Pictures
+wallpaper="https://i.redd.it/frj4dudeg3b71.jpg"
+curl $wallpaper --output Pictures/wallpaper.jpg
+
+# Clone the awesome window manager config
+git clone git@github.com:FaisalTamanoJr/project-dotfiles.git .awesomeConfig
+mkdir .config/awesome
+cp -a .awesomeConfig/.config/awesome .config/awesome
+
+
+# Start the enabled services
+sudo systemctl start bluetooth
+sudo systemctl start cups
+sudo systemctl start sddm

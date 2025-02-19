@@ -254,7 +254,7 @@ microcode_detector
 
 # Pacstrap (setting up a base sytem onto the new root).
 info_print "Installing the base system (it may take a while)."
-pacstrap -K /mnt base "$kernel" "$microcode" linux-firmware "$kernel"-headers btrfs-progs grub grub-btrfs rsync efibootmgr snapper reflector snap-pac zram-generator sudo alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils &>/dev/null &>/dev/null
+pacstrap -K /mnt base "$kernel" "$microcode" linux-firmware "$kernel"-headers btrfs-progs grub grub-btrfs rsync efibootmgr snapper reflector snap-pac zram-generator sudo alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim rofi picom nano awesome calcurse gimp flameshot mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils network-manager-applet volumeicon feh &>/dev/null &>/dev/null
 
 # Setting up the hostname.
 echo "$hostname" > /mnt/etc/hostname
