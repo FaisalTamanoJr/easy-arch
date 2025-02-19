@@ -155,7 +155,7 @@ info_print "Welcome to Install Arch Fast Script, an Arch Linux install script ma
 # Initialize package manager
 pacman-key --init
 pacman-key --populate archlinux
-pacman -Sy archlinux-keyring
+echo "y" | pacman -Sy archlinux-keyring
 
 # Setting up keyboard layout.
 kblayout="us"
@@ -377,16 +377,6 @@ done
 
 # Install additional programs and configure the desktop
 arch-chroot /mnt /bin/bash -e <<EOF
-# Install an AUR Helper
-pacman -S --needed git base-devel
-su $username
-cd
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-exit
-cd
-
 # Install essential programs
 echo "y" | pacman -S dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils
 
@@ -401,6 +391,15 @@ systemctl enable sddm
 systemctl enable bluetooth
 systemctl enable cups
 
+# Install an AUR Helper
+pacman -S --needed git base-devel
+su $username
+cd
+git clone https://aur.archlinux.org/yay.git
+cd yay
+ls
+sleep 5s
+makepkg -si
+exit
+cd
 EOF
-
-reboot
