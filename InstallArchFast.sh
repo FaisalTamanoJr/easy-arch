@@ -374,7 +374,6 @@ services=(reflector.timer snapper-timeline.timer snapper-cleanup.timer btrfs-scr
 for service in "${services[@]}"; do
     systemctl enable "$service" --root=/mnt &>/dev/null
 done
-exit
 
 # Install additional programs and configure the desktop
 arch-chroot /mnt /bin/bash -e <<EOF
