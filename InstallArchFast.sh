@@ -376,9 +376,8 @@ for service in "${services[@]}"; do
 done
 
 # Install additional programs and configure the desktop
-pacstrap /mnt alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils &>/dev/null
-arch-chroot /mnt # Login to root
-
+echo "y" | pacstrap /mnt alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils &>/dev/null
+{ 
 # Start system services
 systemctl enable sddm
 systemctl enable bluetooth
@@ -396,8 +395,9 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 ls
 sleep 5s
-makepkg -si
-exit
+echo "$userpass y" | makepkg -si
 cd
+exit
+} | arch-chroot /mnt # Login to root
 
 exit
