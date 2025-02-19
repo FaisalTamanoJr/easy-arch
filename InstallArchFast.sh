@@ -376,20 +376,17 @@ for service in "${services[@]}"; do
 done
 
 # Install additional programs and configure the desktop
-arch-chroot /mnt /bin/bash -e <<EOF
-# Install essential programs
-echo "y" | pacman -S dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils
-
-# Install video/multimedia plugins
-echo "1 y" | pacman -S ffmpeg gst-plugins-good gst-plugins-bad gst-plugins-ugly gwenview spectacle ffmpegthumbs evince conky
-
-# Install sound packages
-echo "y" | pacman -S alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber
+pacstrap /mnt alsa-utils pipewire pipewire-pulse pipewire-jack wireplumber dunst sddm i3lock libreoffice-still less zip wget unzip bluez flatpak ranger neofetch btop cups neovim picom nano awesome calcurse gimp grim mpv sxiv zathura firefox ttf-noto-nerd noto-fonts-cjk noto-fonts-extra noto-fonts-emoji noto-fonts bluez-utils &>/dev/null
+arch-chroot /mnt # Login to root
 
 # Start system services
 systemctl enable sddm
 systemctl enable bluetooth
 systemctl enable cups
+
+# Install video/multimedia plugins
+echo "1 y" | pacman -S ffmpeg gst-plugins-good gst-plugins-bad gst-plugins-ugly gwenview spectacle ffmpegthumbs evince conky
+
 
 # Install an AUR Helper
 pacman -S --needed git base-devel
@@ -402,4 +399,5 @@ sleep 5s
 makepkg -si
 exit
 cd
-EOF
+
+exit
