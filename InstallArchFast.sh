@@ -152,6 +152,11 @@ echo -ne "${BOLD}${BYELLOW}
 ${RESET}"
 info_print "Welcome to Install Arch Fast Script, an Arch Linux install script made for programmers to easily set up a lightweight and functional desktop"
 
+# Initialize package manager
+pacman-key --init
+pacman-key --populate archlinux
+pacman -Sy archlinux-keyring
+
 # Setting up keyboard layout.
 kblayout="us"
 
